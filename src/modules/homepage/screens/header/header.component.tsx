@@ -1,11 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { Link } from "react-router";
 import { styles } from "./header.styles";
-import { PATHS } from "../../../shared/constants/path-options";
+import { PATHS } from "../../../../shared/constants/path-options";
 import { FaUserCircle } from "react-icons/fa";
-import IconComponent from '../../../shared/components/icon/icon.component';
+import IconComponent from "../../../../shared/components/icon/icon.component";
+import { useAuthStore } from "../../../auth/store/auth.store";
 
 const Header = () => {
+  const isAuth = useAuthStore.getState().isAuth;
+
   return (
     <header css={styles.header}>
       <div css={styles.container}>
@@ -13,9 +16,13 @@ const Header = () => {
           FinApp
         </Link>
         <div css={styles.account}>
-          <Link to={PATHS.auth}>
-            <IconComponent icon={FaUserCircle} size={32} />
-          </Link>
+          {isAuth ? (
+            <IconComponent icon={FaUserCircle} size={24} />
+          ) : (
+            <Link to={PATHS.auth}>
+              <p>Auth</p>
+            </Link>
+          )}
         </div>
       </div>
     </header>

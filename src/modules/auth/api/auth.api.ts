@@ -5,7 +5,7 @@ import { ApiTokenResponse, AuthDto } from "../store/auth-types";
 export const baseUrl = process.env.PUBLIC_API_URL || "http://localhost:3000";
 
 export const navigateToHome = () => {
-  window.location.href = "http://localhost:3030/";
+  window.location.href = "http://localhost:3001/";
 };
 
 export class AuthService {
