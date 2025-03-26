@@ -46,6 +46,7 @@ root.render(
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
+          style={{ width: "200px" }}
           rtl={false}
           pauseOnFocusLoss
           draggable

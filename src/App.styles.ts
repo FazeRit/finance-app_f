@@ -11,6 +11,12 @@ export const styles = {
     width: "100vw",
     backgroundColor: COLORS.light_gray,
   }),
+  main: css({
+    display: "flex",
+    height: "100%",
+    gap: 32,
+    width: "100%",
+  }),
   global: css({
     "*": {
       margin: 0,

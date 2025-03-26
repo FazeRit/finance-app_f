@@ -10,6 +10,7 @@ export const getErrorMessage = (
       ? error.response.data.message.join("\n")
       : error.response.data.message;
   }
+  console.log(errorMessage);
 
   return errorMessage;
 };

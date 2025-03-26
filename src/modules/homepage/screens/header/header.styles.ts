@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
-import { COLORS } from "../../../shared/styles/colors";
-import { FONTS } from "../../../App.styles";
+import { COLORS } from "../../../../shared/styles/colors";
+import { FONTS } from "../../../../App.styles";
 
 export const styles = {
   container: css({
@@ -9,9 +9,9 @@ export const styles = {
     height: 65,
     alignItems: "center",
     padding: 16,
-    marginRight: 80,
+    marginRight: 40,
     justifyContent: "space-between",
-    marginLeft: 80,
+    marginLeft: 40,
   }),
   logo: css({
     fontSize: 24,

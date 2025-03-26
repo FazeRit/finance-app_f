@@ -9,6 +9,13 @@ export const styles = {
     alignItems: "center",
     height: "100vh",
     backgroundColor: COLORS.light_gray,
+    "@media (max-width: 768px)": {
+      backgroundColor: COLORS.white,
+      paddingRight: 16,
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      paddingLeft: 16,
+    },
   }),
   formContainer: css({
     display: "flex",
@@ -19,6 +26,9 @@ export const styles = {
     alignItems: "center",
     backgroundColor: COLORS.white,
     boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
+    "@media (max-width: 768px)": {
+     boxShadow: 'none',
+    },
   }),
   icon: css({
     marginTop: 32,

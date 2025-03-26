@@ -7,7 +7,7 @@ interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 }
 
 export const mainAxios = axios.create({
-  baseURL: process.env.PUBLIC_API_URL || "http://localhost:3030",
+  baseURL: process.env.PUBLIC_API_URL || "http://localhost:3001",
   headers: {
     "Content-Type": "application/json",
   },
@@ -38,7 +38,8 @@ mainAxios.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const { accessToken } = await authService.refresh(); 
+        const { accessToken } = await authService.refresh();
+        console.log("Access token refreshed");
         useAuthStore.getState().setToken(accessToken);
 
         originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;

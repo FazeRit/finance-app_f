@@ -22,13 +22,7 @@ export const styles = {
       gap: 8,
       "&:hover": {
         opacity: 0.9,
-        ...(bgColor === COLORS.white && {
-          backgroundColor: COLORS.dark_slate,
-          color: COLORS.white,
-          "> span": {
-            color: COLORS.white,
-          },
-        }),
+        backgroundColor: bgColor === COLORS.white ? COLORS.light_gray: COLORS.dark_slate,
       },
       "&:disabled": {
         opacity: 0.6,

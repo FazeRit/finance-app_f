@@ -23,5 +23,8 @@ export const styles = {
     color: COLORS.medium_gray,
     textAlign: "center",
     marginTop: 120,
-  })
+    "@media (max-width: 768px)": {
+      marginTop: 32,
+    },
+  }),
 };
