@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> = ({ icon, bgColor, to, text }) => {
   return (
     <Link to={to} css={styles.container}>
       {icon}
-      <p>{text}</p>
+      <p css={styles.text}>{text}</p>
     </Link>
   );
 };

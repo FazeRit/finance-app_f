@@ -7,19 +7,23 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     backgroundColor: COLORS.white,
-    height: 260,
-    padding: 16,
+    height: 280,
+    width: 366,
+    padding: 24,
+    marginTop: 0,
     borderRadius: 12,
     "@media(max-width: 768px)": {
       marginTop: 16,
-    }
+      padding: 16,
+    },
   }),
   title: css({
     fontSize: 18,
-    marginBottom: 8,
+    marginBottom: 26,
     fontFamily: FONTS.Inter_18_Regular,
     "@media(max-width: 768px)": {
       fontSize: 14,
+      marginBottom: 8,
     },
   }),
 };

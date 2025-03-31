@@ -21,11 +21,11 @@ const SideNav = () => {
           Dashboard
         </MenuItem>
         <MenuItem
-          component={<Link to={PATHS.expenses.list} />}
-          className={location.pathname === PATHS.expenses.list ? "active" : ""}
+          component={<Link to={PATHS.expenses.root} />}
+          className={location.pathname === PATHS.expenses.root ? "active" : ""}
           css={[
             styles.text,
-            location.pathname === PATHS.expenses.list && styles.active,
+            location.pathname === PATHS.expenses.root && styles.active,
           ]}
           icon={<IconComponent icon={FaTable} size={16} />}
         >
