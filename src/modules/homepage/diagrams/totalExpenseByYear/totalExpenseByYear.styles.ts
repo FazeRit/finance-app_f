@@ -12,10 +12,6 @@ export const styles = {
     padding: 24,
     marginTop: 0,
     borderRadius: 12,
-    "@media(max-width: 768px)": {
-      marginTop: 16,
-      padding: 16,
-    },
   }),
   title: css({
     fontSize: 18,

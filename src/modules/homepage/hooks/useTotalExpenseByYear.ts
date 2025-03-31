@@ -6,15 +6,14 @@ import {
 } from "../api/homepage.api";
 import { getLastMonth } from "../../../shared/utils/getDate";
 
-export const useTotalExpenseByLastYear = ({
+export const useTotalExpenseByYear = ({
   year,
-  month,
 }: Partial<ApiStatisticsDto> = {}) => {
   const { year: currentYear } = getLastMonth();
   const queryYear = year ?? currentYear;
 
   return useQuery<ApiStatisticsResponse>({
-    queryKey: ["total-expense-by-month", currentYear],
+    queryKey: ["total-expense-by-year", currentYear],
     queryFn: async () => {
       const data = await homePageService.getTotalExpensesByYear({
         year: queryYear,

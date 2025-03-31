@@ -16,21 +16,30 @@ export interface DataPoint {
   label: string;
 }
 
+export interface Expense {
+  id: number;
+  amount: number;
+  description: string;
+  categoryId: number;
+  date: string;
+  category: null | { name: string };
+}
+
 export class HomePageService {
   async getCategoryExpenses({
     year,
     month,
   }: ApiStatisticsDto): Promise<ApiStatisticsResponse> {
     try {
-     const response = await mainAxios.get(
-       `${baseUrl}/statistics/category-expenses-by-month`,
-       {
-         params: {
-              year,
-              month,
-            },
-       }
-     );
+      const response = await mainAxios.get(
+        `${baseUrl}/statistics/category-expenses-by-month`,
+        {
+          params: {
+            year,
+            month,
+          },
+        }
+      );
 
       return response.data;
     } catch (error) {
@@ -39,7 +48,11 @@ export class HomePageService {
     }
   }
 
-  async getTotalExpensesByYear({ year }: { year: number}): Promise<ApiStatisticsResponse> {
+  async getTotalExpensesByYear({
+    year,
+  }: {
+    year: number;
+  }): Promise<ApiStatisticsResponse> {
     try {
       const response = await mainAxios.get(
         `${baseUrl}/statistics/total-expenses-by-year`,
@@ -57,7 +70,10 @@ export class HomePageService {
     }
   }
 
-  async getTotalExpensesByMonth({ year, month }: ApiStatisticsDto): Promise<ApiStatisticsResponse> {
+  async getTotalExpensesByMonth({
+    year,
+    month,
+  }: ApiStatisticsDto): Promise<ApiStatisticsResponse> {
     try {
       const response = await mainAxios.get(
         `${baseUrl}/statistics/total-expenses-by-month`,
@@ -72,6 +88,21 @@ export class HomePageService {
       return response.data;
     } catch (error) {
       console.error("Error during get total expenses by month:", error);
+      throw error;
+    }
+  }
+
+  async getExpenses(take?: number): Promise<Expense[]> {
+    try {
+      const url =
+        take !== undefined
+          ? `${baseUrl}/expense?take=${take}`
+          : `${baseUrl}/expense`;
+
+      const response = await mainAxios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error("Error during get expenses:", error);
       throw error;
     }
   }

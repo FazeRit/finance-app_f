@@ -13,9 +13,9 @@ export const styles = {
   }),
   main: css({
     display: "flex",
-    height: "100%",
+    height: "100vh",
     gap: 32,
-    width: "100%",
+    width: "100vw",
   }),
   global: css({
     "*": {
@@ -29,6 +29,7 @@ export const styles = {
     },
     "html, body": {
       height: "100%",
+      backgroundColor: COLORS.light_gray,
       width: "100%",
     },
     "ol, ul": {

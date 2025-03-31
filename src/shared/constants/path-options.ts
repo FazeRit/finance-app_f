@@ -3,8 +3,11 @@ export const PATHS = {
   auth: '/auth',
   expenses: {
     root: '/expenses',
-    list: "/expenses/list",
-    listById: "/expenses/list/:id",
+    listById: "/expenses/:id",
     uploadBankStatement: "/expenses/upload-bank_statement",
   },
+  categories: {
+    root: '/categories',
+    listById: "/categories/:id",
+  }
 } as const;

@@ -34,9 +34,11 @@ root.render(
           <Route path={PATHS.home} element={<App />}>
             <Route index element={<HomePage />} />
             <Route path={PATHS.expenses.root}>
-              <Route path={PATHS.expenses.list} />
               <Route path={PATHS.expenses.listById} />
               <Route path={PATHS.expenses.uploadBankStatement} />
+            </Route>
+            <Route path={PATHS.categories.root}>
+              <Route path={PATHS.categories.listById} />
             </Route>
           </Route>
         </Routes>

@@ -10,7 +10,6 @@ import { DiagramProps } from "../totalExpenseByMonth/totalExpenseByMonth.compone
 
 const { CanvasJSChart } = CanvasJSReact;
 
-
 const CategoryByMonth: React.FC<DiagramProps> = ({ year, month }) => {
   const queryParams: Partial<{ year: number; month: number }> = {};
   if (year !== undefined) queryParams.year = year;

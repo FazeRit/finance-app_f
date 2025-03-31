@@ -6,7 +6,7 @@ import {
 } from "../api/homepage.api";
 import { getLastMonth } from "../../../shared/utils/getDate";
 
-export const useTotalExpenseByLastMonth= ({
+export const useTotalExpenseByMonth= ({
   year,
   month,
 }: Partial<ApiStatisticsDto> = {}) => {

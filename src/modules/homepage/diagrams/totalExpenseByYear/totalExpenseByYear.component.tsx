@@ -1,27 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
+import { useCategoryByMonth } from "../../hooks/useCategoryByMonth";
 import Loading from "../../../../shared/components/loading/loading.component";
 import CanvasJSReact from "@canvasjs/react-charts";
 import NoDataFound from "../../../../shared/components/noDataFound/noDataFound.component";
 import { COLORS } from "../../../../shared/styles/colors";
-import { styles } from "./totalExpenseByMonth.styles";
-import { useTotalExpenseByMonth } from "../../hooks/useTotalExpenseByMonth";
+import { styles } from "./totalExpenseByYear.styles";
+import { DiagramProps } from "../totalExpenseByMonth/totalExpenseByMonth.component";
+import { useTotalExpenseByYear } from '../../hooks/useTotalExpenseByYear';
 
 const { CanvasJSChart } = CanvasJSReact;
 
-export interface DiagramProps {
-  year?: number;
-  month?: number;
-}
-
-const TotalExpenseByMonth: React.FC<DiagramProps> = ({ year, month }) => {
-  const queryParams: Partial<{ year: number; month: number }> = {};
-  if (year !== undefined) queryParams.year = year;
-  if (month !== undefined) queryParams.month = month;
-
-  const { isPending, data } = useTotalExpenseByMonth(
-    Object.keys(queryParams).length > 0 ? queryParams : undefined
-  );
+const TotalExpenseByYear: React.FC<DiagramProps> = ({ year }) => {
+  const { isPending, data } = useTotalExpenseByYear(year ? { year } : undefined);
 
   if (isPending) {
     return <Loading />;
@@ -40,12 +31,11 @@ const TotalExpenseByMonth: React.FC<DiagramProps> = ({ year, month }) => {
   const options = {
     animationEnabled: true,
     backgroundColor: COLORS.light_gray,
+    creditText: "",
     axisX: {
-      title: "Expenses",
+      title: "Months",
       labelFontSize: 12,
-       labelFormatter: () => {
-        return " ";
-       }
+      labelAngle: -45,
     },
     axisY: {
       title: "Expenses ($)",
@@ -63,7 +53,7 @@ const TotalExpenseByMonth: React.FC<DiagramProps> = ({ year, month }) => {
 
   return (
     <div css={styles.container}>
-      <p css={styles.title}>Monthly Overview</p>
+      <p css={styles.title}>Yearly Overview</p>
       <CanvasJSChart
         options={options}
         containerProps={{ width: 320, height: 200 }}
@@ -72,4 +62,4 @@ const TotalExpenseByMonth: React.FC<DiagramProps> = ({ year, month }) => {
   );
 };
 
-export default TotalExpenseByMonth;
+export default TotalExpenseByYear;

@@ -8,6 +8,6 @@ export const getLastMonth = (date: Date = new Date()): DateParams => {
   lastMonthDate.setMonth(date.getMonth() - 1);
   return {
     year: lastMonthDate.getFullYear(),
-    month: lastMonthDate.getMonth() + 2,
+    month: lastMonthDate.getMonth() + 1,
   };
 };

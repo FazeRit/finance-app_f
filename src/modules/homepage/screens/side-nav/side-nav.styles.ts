@@ -5,8 +5,8 @@ import { COLORS } from "../../../../shared/styles/colors";
 export const styles = {
   container: {
     display: "flex",
-    height: "100vh",
-    "@media (max-width: 768px)": {
+    height: "80vh",
+    "@media (max-width: 1440px)": {
       display: "none",
     },
   },
