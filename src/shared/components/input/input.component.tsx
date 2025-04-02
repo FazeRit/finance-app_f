@@ -26,6 +26,7 @@ export function TextInput<
   onChange,
   onBlur,
   label,
+  type,
   ...rest
 }: TextInputProps<T, U>) {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -43,20 +44,26 @@ export function TextInput<
             </label>
             <input
               {...rest}
-              {...field}
               css={styles.input}
               ref={(e) => {
                 field.ref(e);
                 inputRef.current = e;
               }}
               id={name}
+              type={type}
               onBlur={(e) => {
                 field.onBlur();
                 onBlur?.(e);
               }}
               onChange={(e) => {
-                field.onChange(e);
-                onChange?.(e);
+                if (type === "file") {
+                  const file = e.target.files?.[0] || null;
+                  field.onChange(file);
+                  onChange?.(e);
+                } else {
+                  field.onChange(e);
+                  onChange?.(e);
+                }
               }}
               onFocus={(e) => {
                 rest.onFocus?.(e);

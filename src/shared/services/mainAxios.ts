@@ -7,7 +7,7 @@ interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
 }
 
 export const mainAxios = axios.create({
-  baseURL: process.env.PUBLIC_API_URL || "http://localhost:3001",
+  baseURL: process.env.PUBLIC_API_URL || "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },

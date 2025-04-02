@@ -20,9 +20,16 @@ export interface Expense {
   id: number;
   amount: number;
   description: string;
-  categoryId: number;
+  categoryId?: number;
   date: string;
   category: null | { name: string };
+}
+
+export interface CreateCategoryDto {
+  amount: number;
+  description: string;
+  date: string;
+  categoryId?: number;
 }
 
 export class HomePageService {
@@ -103,6 +110,40 @@ export class HomePageService {
       return response.data;
     } catch (error) {
       console.error("Error during get expenses:", error);
+      throw error;
+    }
+  }
+
+  async createCategory(name: string): Promise<void> {
+    try {
+      await mainAxios.post(`${baseUrl}/categories`, { name });
+    } catch (error) {
+      console.error("Error during create category:", error);
+      throw error;
+    }
+  }
+
+  async createExpenses(expense: CreateCategoryDto): Promise<void> {
+    try {
+      await mainAxios.post(`${baseUrl}/expense`, expense);
+    } catch (error) {
+      console.error("Error during create expense:", error);
+      throw error;
+    }
+  }
+
+  async uploadBankDocument(file: File): Promise<void> {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      await mainAxios.post(`${baseUrl}/document/bank-statement`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (error) {
+      console.error("Error during upload document:", error);
       throw error;
     }
   }

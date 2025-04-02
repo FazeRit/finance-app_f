@@ -23,5 +23,6 @@ export const useCategoryByMonth = ({
       });
       return data;
     },
+    retry: 1,
   });
 };
