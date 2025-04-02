@@ -12,5 +12,6 @@ export const useGetExpenses = ({ take }: Partial<GetExpensesParams> = {}) => {
       const response = await homePageService.getExpenses(take);
       return response;
     },
+    retry: 1,
   });
 };

@@ -3,6 +3,7 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router";
 import { PATHS } from "../../../../shared/constants/path-options";
 import { FaHome, FaTable, FaLandmark } from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
 import { styles } from "./side-nav.styles";
 import IconComponent from "../../../../shared/components/icon/icon.component";
 
@@ -46,6 +47,20 @@ const SideNav = () => {
           icon={<IconComponent icon={FaLandmark} size={16} />}
         >
           Bank Statements
+        </MenuItem>
+        <MenuItem
+          component={<Link to={PATHS.categories.root} />}
+          className={
+            location.pathname === PATHS.categories.root ? "active" : ""
+          }
+          css={[
+            styles.text,
+            location.pathname === PATHS.expenses.uploadBankStatement &&
+              styles.active,
+          ]}
+          icon={<IconComponent icon={MdCategory} size={16} />}
+        >
+          Categories
         </MenuItem>
       </Menu>
     </Sidebar>

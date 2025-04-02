@@ -21,5 +21,6 @@ export const useTotalExpenseByYear = ({
       console.log("data", data);
       return data;
     },
+    retry: 1,
   });
 };

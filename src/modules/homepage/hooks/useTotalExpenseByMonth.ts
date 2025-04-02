@@ -25,5 +25,6 @@ export const useTotalExpenseByMonth= ({
       console.log("data", data);
       return data;
     },
+    retry: 1,
   });
 };

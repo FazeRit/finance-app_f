@@ -1,18 +1,27 @@
 /** @jsxImportSource @emotion/react */
-import { Link } from 'react-router';
-import { COLORS } from '../../styles/colors';
+import { Link } from "react-router";
 import React from "react";
-import { styles } from './card.styles';
+import { styles } from "./card.styles";
+
 type CardProps = {
   icon?: React.ReactNode;
-  bgColor?: typeof COLORS;
-  to: string;
+  to?: string;
   text: string;
+  onClick?: () => void;
 };
 
-const Card: React.FC<CardProps> = ({ icon, bgColor, to, text }) => {
+const Card: React.FC<CardProps> = ({ icon, to, text, onClick }) => {
+  if (!to) {
+    return (
+      <div css={styles.container} onClick={onClick}>
+        {icon}
+        <p css={styles.text}>{text}</p>
+      </div>
+    );
+  }
+
   return (
-    <Link to={to} css={styles.container}>
+    <Link to={to} css={styles.container} onClick={onClick}>
       {icon}
       <p css={styles.text}>{text}</p>
     </Link>
