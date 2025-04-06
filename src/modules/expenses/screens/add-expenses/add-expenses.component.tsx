@@ -1,23 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
-import Modal from "react-responsive-modal";
-import {
-  CreateExpenseSchemaProps,
-  createExpenseValidationRules,
-  fields,
-} from "./create-expense.schema";
 import { useForm } from "react-hook-form";
 import { TextInput } from "../../../../shared/components/input/input.component";
 import Button from "../../../../shared/components/button/button.component";
-import { useCreateExpense } from "../../hooks/useCreateExpenses";
-import { styles } from "./create-expense.styles";
+import { useCreateExpense } from "../../../homepage/hooks/useCreateExpenses";
+import { CreateExpenseSchemaProps, createExpenseValidationRules, fields } from "../../../homepage/screens/create-expenses/create-expense.schema";
+import { styles } from "./add-expenses.styles";
 
-export type CreateExpenseProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
-
-const CreateExpense: React.FC<CreateExpenseProps> = ({ isOpen, onClose }) => {
+const AddExpense= () => {
   const { mutate, isPending } = useCreateExpense();
 
   const { control, handleSubmit } = useForm<CreateExpenseSchemaProps>({
@@ -34,24 +23,13 @@ const CreateExpense: React.FC<CreateExpenseProps> = ({ isOpen, onClose }) => {
       amount: Number(data.amount),
       date: data.date || "",
       description: data.description || "",
-      categoryName: data.categoryName?.toString(),
+      categoryName: data.categoryName ? String(data.categoryName) : undefined,
     });
-    onClose();
   };
 
   return (
-    <Modal
-      open={isOpen}
-      onClose={onClose}
-      center
-      showCloseIcon={true}
-      styles={{
-        modal: styles.modal,
-        overlay: styles.overlay,
-        closeButton: styles.closeButton,
-      }}
-    >
-      <h2 css={styles.title}>Create Expense</h2>
+    <div css={styles.container}>
+      <h2 css={styles.title}>Add New Expense</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {fields.map(({ name, label }) => (
           <TextInput
@@ -64,14 +42,10 @@ const CreateExpense: React.FC<CreateExpenseProps> = ({ isOpen, onClose }) => {
             rules={createExpenseValidationRules[name]}
           />
         ))}
-        <Button
-          disabled={isPending}
-          type="submit"
-          label={"Create expense"}
-        />
+        <Button disabled={isPending} type="submit" label={"Create expense"} />
       </form>
-    </Modal>
+    </div>
   );
 };
 
-export default CreateExpense;
+export default AddExpense;

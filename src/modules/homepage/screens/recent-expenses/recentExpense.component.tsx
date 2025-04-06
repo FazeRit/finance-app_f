@@ -1,41 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { useMemo } from "react";
-import { useGetExpenses } from "../../hooks/useGetExpenses";
 import NoDataFound from "../../../../shared/components/noDataFound/noDataFound.component";
 import Loading from "../../../../shared/components/loading/loading.component";
+import { useGetExpenses } from "../../hooks/useGetExpenses";
 import { styles } from "./recentExpense.styles";
-
-export interface Expense {
-  id: number;
-  amount: number;
-  description: string;
-  categoryId: number;
-  date: string;
-  category: null | { name: string };
-}
+import { ExpenseHeader } from "../../../../shared/components/expense-header/expense-header.component";
+import { Expense } from "../../../expenses/api/expenses.api";
 
 const RecentExpenseList = () => {
   const { isPending, data: expenses } = useGetExpenses({ take: 3 });
-
-  const RecentExpenseHeader = useMemo(
-    () => (
-      <thead css={styles.tableHeader}>
-        <tr>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-    ),
-    []
-  );
 
   if (isPending) {
     return <Loading />;
   }
 
-  if (!expenses || expenses.length === 0) {
+  if (!expenses || expenses.data.length === 0) {
     return <NoDataFound />;
   }
 
@@ -43,9 +21,9 @@ const RecentExpenseList = () => {
     <div css={styles.container}>
       <p css={styles.title}>Recent Expenses</p>
       <table css={styles.table}>
-        {RecentExpenseHeader}
+        <ExpenseHeader />
         <tbody>
-          {expenses.map((expense) => (
+          {expenses.data.map((expense: Expense) => (
             <tr key={expense.id} css={styles.tableRow}>
               <td>
                 {new Date(expense.date).toLocaleDateString("en-US", {

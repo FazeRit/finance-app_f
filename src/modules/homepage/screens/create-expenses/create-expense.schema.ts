@@ -4,7 +4,7 @@ export interface CreateExpenseSchemaProps {
   date?: string;
   amount: number;
   description?: string;
-  categoryId?: number;
+  categoryName?: number;
 }
 
 export const createExpenseValidationRules: Record<
@@ -21,9 +21,7 @@ export const createExpenseValidationRules: Record<
   description: {
     required: "Description is required",
   },
-  categoryId: {
-    valueAsNumber: true,
-  },
+  categoryName: {}
 };
 
 export const fields: Array<{
@@ -33,5 +31,5 @@ export const fields: Array<{
   { name: "date", label: "Date*" },
   { name: "amount", label: "Amount*" },
   { name: "description", label: "Description*" },
-  { name: "categoryId", label: "Category Id" },
+  { name: "categoryName", label: "Category Name" },
 ];

@@ -28,6 +28,7 @@ const CreateCategory: React.FC<CreateCategoryProps> = ({ isOpen, onClose }) => {
 
 const onSubmit = (data: CreateCategorySchemaProps) => {
     mutate(data.name);
+    onClose();
   };
 
   return (

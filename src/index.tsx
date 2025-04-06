@@ -9,6 +9,7 @@ import { styles } from "./App.styles";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Expenses from "./modules/expenses/screens/expenses.component";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +34,7 @@ root.render(
           <Route path={PATHS.auth} element={<Auth />} />
           <Route path={PATHS.home} element={<App />}>
             <Route index element={<HomePage />} />
-            <Route path={PATHS.expenses.root}>
+            <Route path={PATHS.expenses.root} element={<Expenses />}>
               <Route path={PATHS.expenses.listById} />
               <Route path={PATHS.expenses.uploadBankStatement} />
             </Route>
@@ -44,11 +45,10 @@ root.render(
         </Routes>
         <ToastContainer
           position="bottom-right"
-          autoClose={5000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
-          style={{ width: "200px" }}
           rtl={false}
           pauseOnFocusLoss
           draggable
