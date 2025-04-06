@@ -16,22 +16,6 @@ export interface DataPoint {
   label: string;
 }
 
-export interface Expense {
-  id: number;
-  amount: number;
-  description: string;
-  categoryId?: number;
-  date: string;
-  category: null | { name: string };
-}
-
-export interface CreateCategoryDto {
-  amount: number;
-  description: string;
-  date: string;
-  categoryId?: number;
-}
-
 export class HomePageService {
   async getCategoryExpenses({
     year,
@@ -99,35 +83,11 @@ export class HomePageService {
     }
   }
 
-  async getExpenses(take?: number): Promise<Expense[]> {
-    try {
-      const url =
-        take !== undefined
-          ? `${baseUrl}/expense?take=${take}`
-          : `${baseUrl}/expense`;
-
-      const response = await mainAxios.get(url);
-      return response.data;
-    } catch (error) {
-      console.error("Error during get expenses:", error);
-      throw error;
-    }
-  }
-
   async createCategory(name: string): Promise<void> {
     try {
       await mainAxios.post(`${baseUrl}/categories`, { name });
     } catch (error) {
       console.error("Error during create category:", error);
-      throw error;
-    }
-  }
-
-  async createExpenses(expense: CreateCategoryDto): Promise<void> {
-    try {
-      await mainAxios.post(`${baseUrl}/expense`, expense);
-    } catch (error) {
-      console.error("Error during create expense:", error);
       throw error;
     }
   }
